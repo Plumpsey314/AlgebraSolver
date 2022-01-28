@@ -2,12 +2,12 @@ package Expression;
 
 public class Value extends Expression {
 
-    private Number num;
+    private Fractional num;
     private String numStr;
 
-    Value(Number n){
+    public Value(Fractional n){
         num = n;
-        numStr = n.toString();
+        numStr = num.toString();
     }
 
     @Override
@@ -26,11 +26,11 @@ public class Value extends Expression {
     }
 
     @Override
-    public String eval() {
-        return numStr;
+    public Fractional eval() {
+        return num;
     }
 
-    public Number data(){
+    public Fractional data(){
         return num;
     }
     

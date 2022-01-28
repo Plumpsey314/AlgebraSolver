@@ -4,7 +4,7 @@ public class Negate extends UnaryOperation {
 
     private Expression ex;
 
-    Negate(Expression e){
+    public Negate(Expression e){
         ex = e;
     }
 
@@ -20,15 +20,12 @@ public class Negate extends UnaryOperation {
 
     @Override
     public String showUncompiled() {
-        // TODO Auto-generated method stub
-        return null;
+        return "-("+ex.showUncompiled()+")";
     }
 
     @Override
-    public String eval() {
-        Expression[] exps = new Expression[2];
-        exps[0] = new Value(-1);
-        exps[1] = ex;
-        return new Multiplication(exps).eval();
+    public Fractional eval() {
+        Fractional evaluated = ex.eval();
+        return new Fractional(-1*evaluated.numerator(), evaluated.denominator()).reduce();
     }    
 }

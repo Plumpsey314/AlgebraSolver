@@ -1,16 +1,30 @@
 package Expression;
 
-public class Addition extends ArrayOperation{
+public class Addition extends BinaryOperation {
 
-    private Expression[] addends;
+    private Expression data0;
+    private Expression data1;
 
-    Addition(Expression[] exps){
-        addends = exps;
+    //Curently just adds 2 fractions.
+    public Addition(Expression a, Expression b){
+        data0 = a;
+        data1 = b;
     }
 
     @Override
-    public Expression[] data() {
-        return addends;
+    public Expression data0() {
+        return data0;
+    }
+
+    @Override
+    public Expression data1() {
+        return data1;
+    }
+
+    public String showUncompiled() {
+        String data0 = this.data0().showUncompiled();
+        String data1 = this.data1().showUncompiled();
+        return data0+"+"+data1;
     }
 
     @Override
@@ -19,14 +33,12 @@ public class Addition extends ArrayOperation{
     }
 
     @Override
-    public String showUncompiled() {
-        // TODO Auto-generated method stub
-        return null;
+    public Fractional eval() {
+        return addFractions(data0.eval(),data1.eval());
     }
 
-    @Override
-    public String eval() {
-        return null;
+    private Fractional addFractions(Fractional a, Fractional b){
+        return new Fractional(a.numerator()*b.denominator()+b.numerator()*a.denominator(), a.denominator()*b.denominator()).reduce();
     }
     
 }

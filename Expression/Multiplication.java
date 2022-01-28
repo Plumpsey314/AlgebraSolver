@@ -1,16 +1,14 @@
 package Expression;
 
-public class Multiplication extends ArrayOperation{
+public class Multiplication extends BinaryOperation{
 
-    private Expression[] multiplicands;
+    private Expression multiplicand0;
+    private Expression multiplicand1;
 
-    Multiplication(Expression[] exps){
-        multiplicands = exps;
-    }
 
-    @Override
-    public Expression[] data() {
-        return multiplicands;
+    public Multiplication(Expression a, Expression b){
+        multiplicand0 = a;
+        multiplicand1 = b;
     }
 
     @Override
@@ -20,14 +18,25 @@ public class Multiplication extends ArrayOperation{
 
     @Override
     public String showUncompiled() {
-        // TODO Auto-generated method stub
-        return null;
+        // Will eventually get rid of parenthesis when they are unnesesary.
+        return "("+multiplicand0.showUncompiled()+")*("+multiplicand1.showUncompiled()+")";
     }
 
     @Override
-    public String eval() {
-        // TODO Auto-generated method stub
-        return null;
+    public Expression data0() {
+        return multiplicand0;
+    }
+
+    @Override
+    public Expression data1() {
+        return multiplicand1;
+    }
+
+    @Override
+    public Fractional eval() {
+        Fractional evaluated0 = multiplicand0.eval();
+        Fractional evaluated1 = multiplicand1.eval();
+        return new Fractional(evaluated0.numerator()*evaluated1.numerator(),evaluated0.denominator()*evaluated1.denominator()).reduce();
     }
     
 }

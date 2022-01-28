@@ -4,10 +4,18 @@ public abstract class BinaryOperation extends Expression{
 
     @Override
     public String showStandard() {
-        Expression data0 = this.data0();
-        Expression data1 = this.data1();
+        String data0 = this.data0().showStandard();
+        String data1 = this.data1().showStandard();
         return this.name()+"("+data0+","+data1+")";
     }
+
+    @Override
+    public String showUncompiled() {
+        String data0 = this.data0().showUncompiled();
+        String data1 = this.data1().showUncompiled();
+        return this.name()+"("+data0+","+data1+")";
+    }
+
 
     /**
      * This is the first peice of data for all Array operations. 

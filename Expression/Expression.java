@@ -32,6 +32,8 @@ public abstract class Expression {
      * 
      * @returns a string that shows the expression. This will return
      * 4+3+2 for 4+3+2
+     * 
+     * No simplification is going on.
      */
     public abstract String showUncompiled();
 
@@ -40,5 +42,5 @@ public abstract class Expression {
      * @returns a string that shows the standard form of the evaluated expression.
      * Will return 9 for 4+3+2 
      */
-    public abstract String eval();
+    public abstract Fractional eval();
 }

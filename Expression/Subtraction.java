@@ -5,7 +5,7 @@ public class Subtraction extends BinaryOperation {
     private Expression minuend;
     private Expression subtrahend;
 
-    Subtraction(Expression ex0, Expression ex1){
+    public Subtraction(Expression ex0, Expression ex1){
         minuend = ex0;
         subtrahend = ex1;
     }
@@ -27,16 +27,14 @@ public class Subtraction extends BinaryOperation {
 
     @Override
     public String showUncompiled() {
-        // TODO Auto-generated method stub
-        return null;
+        String data0 = this.data0().showUncompiled();
+        String data1 = this.data1().showUncompiled();
+        return data0+"-("+data1+")";
     }
 
     @Override
-    public String eval() {
-        Expression[] exps = new Expression[2];
-        exps[0] = minuend;
-        exps[1] = new Negate(subtrahend);
-        return new Addition(exps).eval();
+    public Fractional eval() {
+        return new Addition(minuend, new Negate(subtrahend)).eval();
     }
     
 }
